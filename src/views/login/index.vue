@@ -1,5 +1,5 @@
 <template>
-  <div class="login s1200">
+  <div class="login">
     <div class="login-logo clear">
       <img :src="require('@/assets/common/logo.png')"
            alt="">
@@ -200,6 +200,8 @@ export default {
 <style lang="less" scoped>
 @import "~@/style/common";
 .login {
+  width: 1000px;
+  margin: 0 auto;
   padding-top: 20px;
   .login-logo {
     margin-bottom: 10px;
@@ -303,7 +305,6 @@ export default {
       filter: alpha(opacity=50);
       filter: none\9;
       opacity: 0.5;
-      text-decoration: none;
     }
     #alimama-footer a:hover {
       filter: alpha(opacity=100);
@@ -316,7 +317,7 @@ export default {
     }
     #alimama-footer .alimama-info a,
     #alimama-footer .alimama-info span {
-      margin-right: 56px;
+      margin-right: 20px;
     }
     #alimama-footer .alimama-info b {
       display: none;
@@ -324,15 +325,15 @@ export default {
       color: #ddd;
     }
     #alimama-footer .aligroup-info b {
-      margin: 0 19px;
+      margin: 0 8px;
       font-weight: 400;
       color: #ddd;
     }
     .ualificate-info {
-      margin-top: 12px;
+      margin-top: 8px;
     }
     .ualificate-info a {
-      margin-right: 46px;
+      margin-right: 20px;
     }
     .ualificate-info a img {
       border: none;
@@ -351,7 +352,7 @@ export default {
       filter: grayscale(0%);
       filter: none;
     }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 767px) {
       #alimama-footer {
         padding: 30px 12px;
         line-height: 2;

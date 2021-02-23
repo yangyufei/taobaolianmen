@@ -20,6 +20,9 @@ module.exports = {
         jQuery: "jquery",
         "windows.jQuery": "jquery"
       })
-    ]
-  }
+    ],
+  },
+  // 生产环境 sourceMap
+  productionSourceMap: false,
+  publicPath: process.env.NODE_ENV === 'production' ? '/taobaolianmen/' : '/'
 }
