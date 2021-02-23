@@ -5,9 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- <link rel="icon" href="https://g.alicdn.com/mm/mm-brand/0.1.0/ico/favicon.ico"> -->
-  <link rel="icon" href="../src/assets/common/favicon.ico">
-  <title>阿里妈妈</title>
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
 </head>
 
 <body>
@@ -15,7 +16,6 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>
