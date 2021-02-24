@@ -47,18 +47,21 @@
                 </label>
                 <input type="text"
                        id="username"
-                       placeholder="会员名/邮箱/手机号">
+                       placeholder="会员名/邮箱/手机号"
+                       v-model="username">
               </div>
               <div class="form-div clear">
                 <label for="password"
                        class="password">
                   <!-- <span class="iconfont">&#xe611;</span> -->
                 </label>
-                <input type="text"
+                <input type="password"
                        id="password"
-                       placeholder="请输入登录密码">
+                       placeholder="请输入登录密码"
+                       v-model="password">
               </div>
-              <span class="login-button">登录</span>
+              <span class="login-button"
+                    @click="login">登录</span>
               <div class="other-button clear">
                 <a>免费注册</a>
                 <a>忘记用户名</a>
@@ -188,6 +191,7 @@
   </div>
 </template>
 <script>
+import { userinfo } from './userInfo.js'
 export default {
   name: 'login',
   components: {
@@ -207,6 +211,8 @@ export default {
       ],
       selectedTabId: '1', // 选中的tab
       showErweima: false, // 是否显示二维码登录
+      username: '',
+      password: ''
     }
   },
   created() {
@@ -224,6 +230,13 @@ export default {
     },
     ifShowErweima() {
       this.showErweima = !this.showErweima
+    },
+    login() {
+      userinfo.forEach(item => {
+        if (this.username == item.name && this.password == item.pw) {
+          this.$router.push('shouye')
+        }
+      })
     }
   },
   watch: {
