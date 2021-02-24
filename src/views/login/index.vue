@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-logo clear">
-      <img :src="require('@/assets/common/logo.png')"
+      <img :src="require('@/assets/img/common/logo.png')"
            alt="">
     </div>
     <div class="login-container">
@@ -9,39 +9,67 @@
         <div class="login-tab">
           <span :class="{'selected': tab.id == selectedTabId}"
                 v-for="tab in tabList"
-                :key="tab.id">{{tab.name}}</span>
+                :key="tab.id"
+                @click="changeTab(tab.id)">{{tab.name}}</span>
         </div>
         <div class="login-view">
           <!-- 淘宝会员登录 -->
-          <div class="taobao-view">
-            <h3>密码登录</h3>
-            <div class="form-div clear">
-              <label for="username"
-                     class="username">
-                <span class="iconfont">&#xe765;</span>
-              </label>
-              <input type="text"
-                     id="username"
-                     placeholder="会员名/邮箱/手机号">
+          <div class="taobao-view"
+               v-if="selectedTabId == '1'">
+            <div class="erweima-container clear">
+              <span class="erweimahou-small"
+                    v-if="showErweima"
+                    @click="ifShowErweima()"></span>
+              <template v-else>
+                <span class="erweima-small"
+                      @click="ifShowErweima()"></span>
+                <span class="saoma"></span>
+              </template>
             </div>
-            <div class="form-div clear">
-              <label for="password">
-                <span class="iconfont">&#xe611;</span>
-              </label>
-              <input type="text"
-                     id="password"
-                     placeholder="请输入登录密码">
-            </div>
-            <span class="login-button">登录</span>
-            <div class="other-button clear">
-              <a>免费注册</a>
-              <a>忘记用户名</a>
-              <a>忘记密码</a>
-            </div>
+            <template v-if="showErweima">
+              <img :src="require('@/assets/img/login/erweima.png')"
+                   alt="">
+              <div class="erweima-bottom clear">
+                <span></span>
+                <div>
+                  <p>打开 手机淘宝|手机天猫</p>
+                  <p>扫一扫登录</p>
+                </div>
+              </div>
+              <p class="show-erweima-button">密码登录 免费注册</p>
+            </template>
+            <template v-else>
+              <h3>密码登录</h3>
+              <div class="form-div clear">
+                <label for="username"
+                       class="username">
+                  <!-- <span class="iconfont">&#xe765;</span> -->
+                </label>
+                <input type="text"
+                       id="username"
+                       placeholder="会员名/邮箱/手机号">
+              </div>
+              <div class="form-div clear">
+                <label for="password"
+                       class="password">
+                  <!-- <span class="iconfont">&#xe611;</span> -->
+                </label>
+                <input type="text"
+                       id="password"
+                       placeholder="请输入登录密码">
+              </div>
+              <span class="login-button">登录</span>
+              <div class="other-button clear">
+                <a>免费注册</a>
+                <a>忘记用户名</a>
+                <a>忘记密码</a>
+              </div>
+            </template>
           </div>
           <!-- 阿里妈妈会员登录 -->
-          <div class="alimama-view">
-
+          <div class="alimama-view"
+               v-if="selectedTabId == '2'">
+            <div></div>
           </div>
         </div>
       </div>
@@ -177,7 +205,8 @@ export default {
           name: '阿里妈妈会员'
         }
       ],
-      selectedTabId: '1'
+      selectedTabId: '1', // 选中的tab
+      showErweima: false, // 是否显示二维码登录
     }
   },
   created() {
@@ -190,7 +219,12 @@ export default {
 
   },
   methods: {
-
+    changeTab(id) {
+      this.selectedTabId = id
+    },
+    ifShowErweima() {
+      this.showErweima = !this.showErweima
+    }
   },
   watch: {
 
@@ -237,28 +271,91 @@ export default {
         }
       }
       .login-view {
-        width: 250px;
-        margin: 0 auto;
+        overflow: auto;
+        height: 278px;
         .taobao-view {
-          padding: 10px 0 40px;
+          width: 250px;
+          min-height: 350px;
+          margin: 0 auto;
+          // padding: 0 0 40px;
+          .erweima-container {
+            span {
+              float: right;
+              &.erweima-small,
+              &.erweimahou-small {
+                width: 30px;
+                height: 28px;
+                .iconCenter("login/erweima_small");
+                cursor: pointer;
+              }
+              &.erweimahou-small {
+                .iconCenter("login/eriweimahou_small");
+              }
+              &.saoma {
+                width: 100px;
+                height: 28px;
+                margin-right: 6px;
+                .iconCenter("login/saoma");
+              }
+            }
+          }
+          .erweima-bottom {
+            width: 188px;
+            margin: 0 auto;
+            span {
+              float: left;
+              width: 34px;
+              height: 37px;
+              margin-right: 10px;
+              .iconCenter("login/sao");
+            }
+            div {
+              float: left;
+              p {
+                margin: 2px;
+                color: #6c6c6c;
+                font-size: 12px;
+              }
+            }
+          }
+          .show-erweima-button {
+            text-align: right;
+            color: #6c6c6c;
+            font-size: 12px;
+          }
+          img {
+            display: block;
+            width: 130px;
+            margin: 20px auto;
+          }
           h3 {
+            margin: 0 0 16px;
             color: #3c3c3c;
             font-size: 16px;
           }
           .form-div {
             height: 26px;
             margin-bottom: 20px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
+            // border: 1px solid #ccc;
             label {
               float: left;
-              width: 30px;
+              width: 35px;
+              height: 25px;
+              background: #ccc;
+              &.username {
+                .iconCenter("login/username");
+              }
+              &.password {
+                .iconCenter("login/password");
+              }
             }
             input {
               float: left;
-              border: 0;
+              // border: 0;
               height: 24px;
               outline: none;
+              border: 1px solid #f1eeee;
+              font-size: 12px;
             }
           }
           .login-button {
@@ -280,13 +377,27 @@ export default {
               margin-left: 10px;
               font-size: 12px;
               color: #6c6c6c;
+              text-decoration: none;
             }
+          }
+        }
+        .alimama-view {
+          div {
+            width: 100%;
+            height: 216px;
+            .iconCenter("login/alimama");
           }
         }
       }
     }
   }
   .footer {
+    text-align: left;
+    font-size: 12px;
+    line-height: 2.4;
+    a {
+      text-decoration: none;
+    }
     .index-nav-map-wrap {
       height: auto !important;
     }
