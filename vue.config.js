@@ -11,7 +11,8 @@ module.exports = {
   },
   devServer: {
     // 调试端口
-    port: 8888
+    port: 8888,
+    disableHostCheck: true, //webpack4.0 开启热更新
   },
   configureWebpack: {
     plugins: [
