@@ -17,13 +17,19 @@
           <div class="taobao-view"
                v-if="selectedTabId == '1'">
             <div class="erweima-container clear">
-              <span class="erweimahou-small"
+              <span class="erweimahou-small iconfont"
                     v-if="showErweima"
-                    @click="ifShowErweima()"></span>
+                    @click="ifShowErweima()">&#xe60c;</span>
               <template v-else>
-                <span class="erweima-small"
-                      @click="ifShowErweima()"></span>
-                <span class="saoma"></span>
+                <span class="erweima-small iconfont"
+                      @click="ifShowErweima()">&#xe65a;</span>
+                <span class="saoma">
+                  <!-- <span class="iconfont">&#xe679;</span> -->
+                  <span class="saoma-font">
+                    <div class="poptip-arrow"><em></em><span></span></div>
+                    <var>扫码登录更安全</var>
+                  </span>
+                </span>
               </template>
             </div>
             <template v-if="showErweima">
@@ -264,7 +270,7 @@ export default {
     .box {
       position: absolute;
       right: 60px;
-      top: 15px;
+      top: 11px;
       width: 350px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       .login-tab {
@@ -292,23 +298,74 @@ export default {
           margin: 0 auto;
           // padding: 0 0 40px;
           .erweima-container {
+            padding-top: 3px;
             span {
               float: right;
               &.erweima-small,
               &.erweimahou-small {
                 width: 30px;
-                height: 28px;
-                .iconCenter("login/erweima_small");
+                font-size: 26px;
                 cursor: pointer;
               }
-              &.erweimahou-small {
-                .iconCenter("login/eriweimahou_small");
-              }
               &.saoma {
-                width: 100px;
+                // width: 100px;
                 height: 28px;
-                margin-right: 6px;
-                .iconCenter("login/saoma");
+                margin-right: 16px;
+                padding-top: 5px;
+                .saoma-font {
+                  position: relative;
+                  float: right;
+                  height: 22px;
+                  border: 1px solid #f3d995;
+                  // border-right: 0;
+                  background: #fefcee;
+                  padding: 0px 3px;
+                  .poptip-arrow {
+                    position: absolute;
+                    z-index: 10;
+                    top: 4px;
+                    right: 0;
+                    em {
+                      position: absolute;
+                      width: 0;
+                      height: 0;
+                      top: 0;
+                      left: 1px;
+                      border-color: hsla(0, 0%, 100%, 0);
+                      border-left-color: #ff9000;
+                      border-width: 6px 0 6px 6px;
+                      border-style: solid;
+                      overflow: hidden;
+                    }
+                    span {
+                      position: absolute;
+                      width: 0;
+                      height: 0;
+                      border-color: hsla(0, 0%, 100%, 0);
+                      border-style: solid;
+                      overflow: hidden;
+                      top: 0;
+                      left: 0;
+                      border-left-color: #fefcee;
+                      border-width: 6px 0 6px 6px;
+                    }
+                  }
+                  var {
+                    display: block;
+                    font-style: normal;
+                    color: #ff9000;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 22px;
+                  }
+                }
+                .iconfont {
+                  float: right;
+                  color: #ff9000;
+                  font-size: 12px;
+                }
+                // .iconCenter("login/saoma2");
+                // background-size: 100% auto;
               }
             }
           }
@@ -365,11 +422,12 @@ export default {
             input {
               float: left;
               width: 212px;
-              height: 24px;
+              height: 26px;
+              padding: 0 3px;
+              box-sizing: border-box;
               outline: none;
               border: 1px solid #f1eeee;
               border-left: 0;
-              padding: 0;
               font-size: 12px;
             }
           }
