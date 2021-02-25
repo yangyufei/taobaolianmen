@@ -342,7 +342,7 @@ export default {
             margin: 20px auto;
           }
           h3 {
-            margin: 0 0 16px;
+            margin: 0 0 15px;
             color: #3c3c3c;
             font-size: 16px;
           }
@@ -353,7 +353,7 @@ export default {
             label {
               float: left;
               width: 35px;
-              height: 25px;
+              height: 28px;
               background: #ccc;
               &.username {
                 .iconCenter("login/username");
@@ -364,10 +364,12 @@ export default {
             }
             input {
               float: left;
-              // border: 0;
+              width: 212px;
               height: 24px;
               outline: none;
               border: 1px solid #f1eeee;
+              border-left: 0;
+              padding: 0;
               font-size: 12px;
             }
           }
