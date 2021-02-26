@@ -198,6 +198,7 @@
 </template>
 <script>
 import { userinfo } from './userInfo.js'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'login',
   components: {
@@ -228,9 +229,10 @@ export default {
 
   },
   computed: {
-
+    ...mapState('loginInfo', ['userData'])
   },
   methods: {
+    ...mapMutations('loginInfo', ['SET_USER_DATA']),
     changeTab(id) {
       this.selectedTabId = id
     },
@@ -240,13 +242,16 @@ export default {
     login() {
       userinfo.forEach(item => {
         if (this.username == item.name && this.password == item.pw) {
+          this.SET_USER_DATA({ userData: item.name })
           this.$router.push('shouye')
         }
       })
     }
   },
   watch: {
-
+    userData(val) {
+      console.log(val)
+    }
   }
 }
 </script>
