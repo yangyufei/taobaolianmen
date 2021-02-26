@@ -1,14 +1,11 @@
 <template>
   <div class="">
-    <!-- <div class="nav-menu">
-
-    </div> -->
-    <!-- <router-view></router-view> -->
+    这里是导航
   </div>
 </template>
 <script>
 export default {
-  name: 'index',
+  name: 'navMenu',
   components: {
 
   },
