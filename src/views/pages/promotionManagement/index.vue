@@ -1,14 +1,11 @@
 <template>
   <div class="">
-    <!-- <div class="nav-menu">
-
-    </div> -->
-    <!-- <router-view></router-view> -->
+    推广管理
   </div>
 </template>
 <script>
 export default {
-  name: 'index',
+  name: 'promotionManagement',
   components: {
 
   },
