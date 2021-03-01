@@ -242,7 +242,6 @@ export default {
     login() {
       userinfo.forEach(item => {
         if (this.username == item.name && this.password == item.pw) {
-          this.$common.setSession('userData', { userData: item.name })
           this.SET_USER_DATA({ userData: item.name })
           this.$router.push('shouye')
         }

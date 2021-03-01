@@ -1,11 +1,19 @@
 <template>
   <div class="main-app">
-    <header>
+    <header class="clear">
       <img :src="require('@/assets/img/common/index_logo.png')"
            alt="">
       <span class="toOldVersion">返回旧版</span>
-      <!-- TODO:需要先引入element-ui -->
       <navMenu></navMenu>
+      <ul class="right-panel clear">
+        <li>
+          <span>潮流墨迹2(124638293)&nbsp;，&nbsp;&nbsp;</span>
+          <var class="log-out">退出</var>
+        </li>
+        <li class="iconfont xinfeng">&#xe617;</li>
+        <li class="iconfont wenhao"
+            @click="toWenhao">&#xe71d;</li>
+      </ul>
     </header>
     <router-view></router-view>
   </div>
@@ -32,7 +40,9 @@ export default {
 
   },
   methods: {
-
+    toWenhao() {
+      window.open('https://help.alimama.com/?spm=a219t.11816994.1998910419.d00603273.425675a50aWyIe#!/product/index?id=8306480')
+    }
   },
   watch: {
 
@@ -55,6 +65,7 @@ export default {
       left: 80px;
       display: block;
       width: 149px;
+      cursor: pointer;
     }
     .toOldVersion {
       position: absolute;
@@ -68,6 +79,36 @@ export default {
       text-align: center;
       color: #666;
       font-size: 12px;
+      cursor: pointer;
+      &:hover {
+        color: #f50;
+      }
+    }
+    .right-panel {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      margin: 0;
+      li {
+        float: left;
+        padding: 0 11px;
+        font-size: 12px;
+        color: #333;
+        var,
+        &.iconfont {
+          cursor: pointer;
+        }
+        &.xinfeng {
+          font-size: 19px;
+        }
+        &.wenhao {
+          font-size: 14px;
+          line-height: 22px;
+          &:hover {
+            color: #f50;
+          }
+        }
+      }
     }
   }
 }
