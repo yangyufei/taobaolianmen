@@ -52,4 +52,8 @@ ul,
 li {
   list-style: none;
 }
+.el-popper {
+  color: #333;
+  line-height: 18px !important;
+}
 </style>

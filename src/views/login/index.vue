@@ -1,196 +1,198 @@
 <template>
   <div class="login">
-    <div class="login-logo clear">
-      <img :src="require('@/assets/img/common/logo.png')"
-           alt="">
-    </div>
-    <div class="login-container">
-      <div class="box">
-        <div class="login-tab">
-          <span :class="{'selected': tab.id == selectedTabId}"
-                v-for="tab in tabList"
-                :key="tab.id"
-                @click="changeTab(tab.id)">{{tab.name}}</span>
-        </div>
-        <div class="login-view">
-          <!-- 淘宝会员登录 -->
-          <div class="taobao-view"
-               v-if="selectedTabId == '1'">
-            <div class="erweima-container clear">
-              <span class="erweimahou-small iconfont"
-                    v-if="showErweima"
-                    @click="ifShowErweima()">&#xe60c;</span>
-              <template v-else>
-                <span class="erweima-small iconfont"
-                      @click="ifShowErweima()">&#xe65a;</span>
-                <span class="saoma">
-                  <!-- <span class="iconfont">&#xe679;</span> -->
-                  <span class="saoma-font">
-                    <div class="poptip-arrow"><em></em><span></span></div>
-                    <var>扫码登录更安全</var>
+    <div class="login-box">
+      <div class="login-logo clear">
+        <img :src="require('@/assets/img/common/logo.png')"
+             alt="">
+      </div>
+      <div class="login-container">
+        <div class="box">
+          <div class="login-tab">
+            <span :class="{'selected': tab.id == selectedTabId}"
+                  v-for="tab in tabList"
+                  :key="tab.id"
+                  @click="changeTab(tab.id)">{{tab.name}}</span>
+          </div>
+          <div class="login-view">
+            <!-- 淘宝会员登录 -->
+            <div class="taobao-view"
+                 v-if="selectedTabId == '1'">
+              <div class="erweima-container clear">
+                <span class="erweimahou-small iconfont"
+                      v-if="showErweima"
+                      @click="ifShowErweima()">&#xe60c;</span>
+                <template v-else>
+                  <span class="erweima-small iconfont"
+                        @click="ifShowErweima()">&#xe65a;</span>
+                  <span class="saoma">
+                    <!-- <span class="iconfont">&#xe679;</span> -->
+                    <span class="saoma-font">
+                      <div class="poptip-arrow"><em></em><span></span></div>
+                      <var>扫码登录更安全</var>
+                    </span>
                   </span>
-                </span>
+                </template>
+              </div>
+              <template v-if="showErweima">
+                <img :src="require('@/assets/img/login/erweima.png')"
+                     alt="">
+                <div class="erweima-bottom clear">
+                  <span></span>
+                  <div>
+                    <p>打开 手机淘宝|手机天猫</p>
+                    <p>扫一扫登录</p>
+                  </div>
+                </div>
+                <p class="show-erweima-button">密码登录 免费注册</p>
+              </template>
+              <template v-else>
+                <h3>密码登录</h3>
+                <div class="form-div clear">
+                  <label for="username"
+                         class="username">
+                    <!-- <span class="iconfont">&#xe765;</span> -->
+                  </label>
+                  <input type="text"
+                         id="username"
+                         placeholder="会员名/邮箱/手机号"
+                         v-model="username">
+                </div>
+                <div class="form-div clear">
+                  <label for="password"
+                         class="password">
+                    <!-- <span class="iconfont">&#xe611;</span> -->
+                  </label>
+                  <input type="password"
+                         id="password"
+                         placeholder="请输入登录密码"
+                         v-model="password">
+                </div>
+                <span class="login-button"
+                      @click="login">登录</span>
+                <div class="other-button clear">
+                  <a>免费注册</a>
+                  <a>忘记用户名</a>
+                  <a>忘记密码</a>
+                </div>
               </template>
             </div>
-            <template v-if="showErweima">
-              <img :src="require('@/assets/img/login/erweima.png')"
-                   alt="">
-              <div class="erweima-bottom clear">
-                <span></span>
-                <div>
-                  <p>打开 手机淘宝|手机天猫</p>
-                  <p>扫一扫登录</p>
-                </div>
-              </div>
-              <p class="show-erweima-button">密码登录 免费注册</p>
-            </template>
-            <template v-else>
-              <h3>密码登录</h3>
-              <div class="form-div clear">
-                <label for="username"
-                       class="username">
-                  <!-- <span class="iconfont">&#xe765;</span> -->
-                </label>
-                <input type="text"
-                       id="username"
-                       placeholder="会员名/邮箱/手机号"
-                       v-model="username">
-              </div>
-              <div class="form-div clear">
-                <label for="password"
-                       class="password">
-                  <!-- <span class="iconfont">&#xe611;</span> -->
-                </label>
-                <input type="password"
-                       id="password"
-                       placeholder="请输入登录密码"
-                       v-model="password">
-              </div>
-              <span class="login-button"
-                    @click="login">登录</span>
-              <div class="other-button clear">
-                <a>免费注册</a>
-                <a>忘记用户名</a>
-                <a>忘记密码</a>
-              </div>
-            </template>
-          </div>
-          <!-- 阿里妈妈会员登录 -->
-          <div class="alimama-view"
-               v-if="selectedTabId == '2'">
-            <div></div>
+            <!-- 阿里妈妈会员登录 -->
+            <div class="alimama-view"
+                 v-if="selectedTabId == '2'">
+              <div></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="footer">
-      <div id="alimama-footer"
-           data-spm="a214tr9"
-           data-spm-max-idx="84">
-        <div class="alimama-info">
-          <div class="link">
-            <a target="_black"
-               href="//help.alimama.com/">联系客服</a>
-            <b>|</b>
-            <a target="_black"
-               href="//open.taobao.com/">开放平台</a>
-            <b>|</b>
-            <a target="_black"
-               href="https://terms.alicdn.com/legal-agreement/terms/suit_bu1_ali_mama_division/suit_bu1_ali_mama_division201709111812_13128.html">法律声明</a>
-            <b>|</b>
-            <a target="_black"
-               href="https://jubao.alibaba.com/index.html?site=ALIMAMA">廉正举报</a>
+      <div class="footer">
+        <div id="alimama-footer"
+             data-spm="a214tr9"
+             data-spm-max-idx="84">
+          <div class="alimama-info">
+            <div class="link">
+              <a target="_black"
+                 href="//help.alimama.com/">联系客服</a>
+              <b>|</b>
+              <a target="_black"
+                 href="//open.taobao.com/">开放平台</a>
+              <b>|</b>
+              <a target="_black"
+                 href="https://terms.alicdn.com/legal-agreement/terms/suit_bu1_ali_mama_division/suit_bu1_ali_mama_division201709111812_13128.html">法律声明</a>
+              <b>|</b>
+              <a target="_black"
+                 href="https://jubao.alibaba.com/index.html?site=ALIMAMA">廉正举报</a>
+            </div>
+            <div class="copyright">
+              <span>阿里妈妈版权所有 2007-现在</span>
+              <b>|</b>
+              <a target="_black"
+                 href="http://beian.miit.gov.cn">增值电信业务经营许可证：浙B2-20070195</a>
+              <a rel="noopener noreferrer"
+                 target="_blank"
+                 href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010002000075"><img src="//gw.alicdn.com/tfs/TB1jwakrbH1gK0jSZFwXXc7aXXa-20-20.png"
+                     style="vertical-align: -2px;margin-right: 4px;">浙公网安备 33010002000075号</a>
+            </div>
           </div>
-          <div class="copyright">
-            <span>阿里妈妈版权所有 2007-现在</span>
+
+          <div class="aligroup-info">
+            <a target="_black"
+               href="http://www.alibabagroup.com/cn/global/home">阿里巴巴集团</a>
             <b>|</b>
             <a target="_black"
-               href="http://beian.miit.gov.cn">增值电信业务经营许可证：浙B2-20070195</a>
-            <a rel="noopener noreferrer"
-               target="_blank"
-               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010002000075"><img src="//gw.alicdn.com/tfs/TB1jwakrbH1gK0jSZFwXXc7aXXa-20-20.png"
-                   style="vertical-align: -2px;margin-right: 4px;">浙公网安备 33010002000075号</a>
+               href="//www.taobao.com">淘宝网</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.tmall.com">天猫</a>
+            <b>|</b>
+            <a target="_black"
+               href="//ju.taobao.com">聚划算</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.aliexpress.com">全球速卖通</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.alibaba.com">阿里巴巴国际交易市场</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.1688.com">1688</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.alimama.com">阿里妈妈</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.fliggy.com">飞猪</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.aliyun.com">阿里云计算</a>
+            <b>|</b>
+            <a target="_black"
+               href="http://www.alios.cn">AliOS</a>
+            <b>|</b>
+            <a target="_black"
+               href="//aliqin.tmall.com">阿里通信</a>
+            <b>|</b>
+            <a target="_black"
+               href="http://www.autonavi.com/">高德</a>
+            <b>|</b>
+            <a target="_black"
+               href="http://www.uc.cn/">UC</a>
+            <br>
+            <a target="_black"
+               href="//www.umeng.com/">友盟</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.xiami.com">虾米</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.dingtalk.com/?lwfrom=20150130163937547">钉钉</a>
+            <b>|</b>
+            <a target="_black"
+               href="//www.alipay.com">支付宝</a>
+            <b>|</b>
+            <a target="_black"
+               href="//damo.alibaba.com/">达摩院</a>
           </div>
-        </div>
 
-        <div class="aligroup-info">
-          <a target="_black"
-             href="http://www.alibabagroup.com/cn/global/home">阿里巴巴集团</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.taobao.com">淘宝网</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.tmall.com">天猫</a>
-          <b>|</b>
-          <a target="_black"
-             href="//ju.taobao.com">聚划算</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.aliexpress.com">全球速卖通</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.alibaba.com">阿里巴巴国际交易市场</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.1688.com">1688</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.alimama.com">阿里妈妈</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.fliggy.com">飞猪</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.aliyun.com">阿里云计算</a>
-          <b>|</b>
-          <a target="_black"
-             href="http://www.alios.cn">AliOS</a>
-          <b>|</b>
-          <a target="_black"
-             href="//aliqin.tmall.com">阿里通信</a>
-          <b>|</b>
-          <a target="_black"
-             href="http://www.autonavi.com/">高德</a>
-          <b>|</b>
-          <a target="_black"
-             href="http://www.uc.cn/">UC</a>
-          <br>
-          <a target="_black"
-             href="//www.umeng.com/">友盟</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.xiami.com">虾米</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.dingtalk.com/?lwfrom=20150130163937547">钉钉</a>
-          <b>|</b>
-          <a target="_black"
-             href="//www.alipay.com">支付宝</a>
-          <b>|</b>
-          <a target="_black"
-             href="//damo.alibaba.com/">达摩院</a>
-        </div>
-
-        <div class="ualificate-info">
-          <a target="_black"
-             href="http://www.pingpinganan.gov.cn/">
-            <img align="absmiddle"
-                 src="//img.alicdn.com/tps/i2/T1C3z7FudfXXcsE9Te-40-42.png"
-                 alt="网监局">
-          </a>
-          <a target="_black"
-             href="http://idinfo.zjamr.zj.gov.cn/bscx.do?method=lzxx&amp;id=3301843301080000022791">
-            <img align="absmiddle"
-                 width="40"
-                 src="//gw.alicdn.com/tfs/TB1HxCbreL2gK0jSZPhXXahvXXa-65-70.gif">
-          </a>
-          <a target="_black"
-             href="http://www.pingpinganan.gov.cn/">
-            <img align="absmiddle"
-                 alt="网监局"
-                 src="//img.alicdn.com/tps/i4/T1VVv9FABeXXbtCInf-38-42.png">
-          </a>
+          <div class="ualificate-info">
+            <a target="_black"
+               href="http://www.pingpinganan.gov.cn/">
+              <img align="absmiddle"
+                   src="//img.alicdn.com/tps/i2/T1C3z7FudfXXcsE9Te-40-42.png"
+                   alt="网监局">
+            </a>
+            <a target="_black"
+               href="http://idinfo.zjamr.zj.gov.cn/bscx.do?method=lzxx&amp;id=3301843301080000022791">
+              <img align="absmiddle"
+                   width="40"
+                   src="//gw.alicdn.com/tfs/TB1HxCbreL2gK0jSZPhXXahvXXa-65-70.gif">
+            </a>
+            <a target="_black"
+               href="http://www.pingpinganan.gov.cn/">
+              <img align="absmiddle"
+                   alt="网监局"
+                   src="//img.alicdn.com/tps/i4/T1VVv9FABeXXbtCInf-38-42.png">
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -258,9 +260,12 @@ export default {
 <style lang="less" scoped>
 @import "~@/style/common";
 .login {
-  width: 1000px;
-  margin: 0 auto;
-  padding-top: 20px;
+  background: white;
+  .login-box {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
   .login-logo {
     margin-bottom: 10px;
     img {

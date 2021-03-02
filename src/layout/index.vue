@@ -59,6 +59,7 @@ export default {
     padding-left: 286px;
     box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    background: white;
     img {
       position: absolute;
       top: 14px;

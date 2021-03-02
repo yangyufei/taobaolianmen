@@ -1,6 +1,10 @@
 // 登录账号
 export const userinfo = [
   {
+    name: '潮流墨迹2',
+    pw: 'akalf18814486607'
+  },
+  {
     name: '潮流墨迹',
     pw: '18259429107'
   },
