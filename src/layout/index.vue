@@ -8,18 +8,20 @@
       <ul class="right-panel clear">
         <li>
           <span>潮流墨迹2(124638293)&nbsp;，&nbsp;&nbsp;</span>
-          <var class="log-out">退出</var>
+          <var class="log-out"
+               @click="logOut">退出</var>
         </li>
         <li class="iconfont xinfeng">&#xe617;</li>
         <li class="iconfont wenhao"
             @click="toWenhao">&#xe71d;</li>
       </ul>
     </header>
+
     <router-view></router-view>
   </div>
 </template>
 <script>
-import navMenu from '@/views/pages/navMenu'
+import navMenu from './navMenu'
 export default {
   name: 'layout',
   components: {
@@ -42,6 +44,11 @@ export default {
   methods: {
     toWenhao() {
       window.open('https://help.alimama.com/?spm=a219t.11816994.1998910419.d00603273.425675a50aWyIe#!/product/index?id=8306480')
+    },
+    logOut() {
+      sessionStorage.clear()
+      this.$store.state.loginInfo.userData = null
+      this.$router.push("/")
     }
   },
   watch: {

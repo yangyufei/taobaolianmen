@@ -1,11 +1,6 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
   <div id="app">
     <!-- 使用userData来判断是否是登录页还是内页，userData有值说明是内页，则添加导航 -->
-    <!-- <span v-if="userData">123456</span> -->
     <layout v-if="userData"></layout>
     <router-view v-else />
   </div>
@@ -55,5 +50,8 @@ li {
 .el-popper {
   color: #333;
   line-height: 18px !important;
+}
+.el-menu-item:hover {
+  color: #ff4800 !important;
 }
 </style>
