@@ -11,6 +11,6 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 app.config.globalProperties.$common = common
-app.mount('#app')
 installElementPlus(app)
+app.mount('#app')
 // app.use(store).use(router).mount('#app')

@@ -16,16 +16,20 @@
             @click="toWenhao">&#xe71d;</li>
       </ul>
     </header>
-
-    <router-view></router-view>
+    <div class="main">
+      <sidebar class="sidebar-nav-main"></sidebar>
+      <router-view class="view-main"></router-view>
+    </div>
   </div>
 </template>
 <script>
 import navMenu from './navMenu'
+import sidebar from './sidebar'
 export default {
   name: 'layout',
   components: {
-    navMenu
+    navMenu,
+    sidebar
   },
   data() {
     return {
@@ -63,14 +67,14 @@ export default {
   header {
     position: relative;
     height: 60px;
-    padding-left: 286px;
+    padding-left: 226px;
     box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
     background: white;
     img {
       position: absolute;
       top: 14px;
-      left: 80px;
+      left: 28px;
       display: block;
       width: 149px;
       cursor: pointer;
@@ -78,7 +82,7 @@ export default {
     .toOldVersion {
       position: absolute;
       top: 21px;
-      left: 218px;
+      left: 166px;
       background: #fff;
       border: 1px solid #e2e2e9;
       border-radius: 2px;
@@ -117,6 +121,17 @@ export default {
           }
         }
       }
+    }
+  }
+  .main {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    .sidebar-nav-main {
+      flex: 0 0 200px;
+    }
+    .view-main {
+      flex: 1;
     }
   }
 }
